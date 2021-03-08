@@ -13,14 +13,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
-        let splitViewController = UISplitViewController()
-        splitViewController.viewControllers = [UINavigationController(rootViewController: AnnouncesListViewController())]
-        splitViewController.preferredDisplayMode = .automatic
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = splitViewController
-        self.window?.makeKeyAndVisible()
-        
+
+        if #available(iOS 13.0, *) {
+            // from iOS 13 we are using the SceneDelegate.swift
+
+        } else {
+            if let window = self.window {
+                let splitViewController = UISplitViewController()
+                splitViewController.viewControllers = [UINavigationController(rootViewController: AnnouncesListViewController())]
+                splitViewController.preferredDisplayMode = .automatic
+                window.rootViewController = splitViewController
+                window.makeKeyAndVisible()
+            }
+            
+        }
         return true
     }
 
