@@ -14,8 +14,8 @@ class AnnounceTableViewCell: UITableViewCell {
     static let kAnnounceTableViewCellIdentifier = "AnnounceTableViewCellIdentifier"
     static let kAnnounceTableViewCellHeight: CGFloat = 150.0
 
-    static let kAnnouceImageViewPading: CGFloat = 10.0
-    static let kAnnouceImageViewSize: CGFloat = 100.0
+    static let kPading: CGFloat = 10.0
+    static let kAnnouceImageViewSize: CGFloat = 130.0
 
         //MARK: subviews
     
@@ -44,10 +44,90 @@ class AnnounceTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: Setup cell method
+    
+    func setupCell(){
+        self.annouceImageView.image = UIImage(named: "lbc_placeholder")
+        self.announceTitleLabel.text = "Carte graphique"
+        self.priceAnnounceLabel.text = "100€"
+        self.categoryAnnounceLabel.text = "Informatique"
+        self.creationDateAnnounceLabel.text = "aujoud'hui 21:30"
+
+    }
+
     //MARK: Setup UI methods
 
     private func setupUI() {
-        //TODO: prepare subviews
+        self.prepareAnnounceImageView()
+        self.prepareAnnounceTitleLabel()
+        self.preparePriceAnnounceLabel()
+        self.prepareCreationDateAnnounceLabel()
+        self.prepareCategoryAnnounceLabel()
+    }
+    
+    private func prepareAnnounceImageView(){
+        self.addSubview(self.annouceImageView)
+        self.annouceImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            self.annouceImageView.widthAnchor.constraint(equalToConstant: Self.kAnnouceImageViewSize),
+            self.annouceImageView.heightAnchor.constraint(equalToConstant: Self.kAnnouceImageViewSize),
+            self.annouceImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Self.kPading),
+            self.annouceImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Self.kPading)
+        ])
+    }
+    
+    private func prepareAnnounceTitleLabel(){
+        self.addSubview(self.announceTitleLabel)
+        self.announceTitleLabel.textColor = .black
+        self.announceTitleLabel.numberOfLines = 2
+        self.announceTitleLabel.font = UIFont.preferredFont(forTextStyle: .headline)
+        self.announceTitleLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            self.announceTitleLabel.leadingAnchor.constraint(equalTo:self.annouceImageView.trailingAnchor, constant: Self.kPading),
+            self.announceTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Self.kPading),
+            self.announceTitleLabel.topAnchor.constraint(equalTo: self.annouceImageView.topAnchor)
+        ])
+    }
+    
+    private func preparePriceAnnounceLabel(){
+        self.addSubview(self.priceAnnounceLabel)
+        self.priceAnnounceLabel.textColor = .orange
+        self.priceAnnounceLabel.numberOfLines = 1
+        self.priceAnnounceLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
+        self.priceAnnounceLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            self.priceAnnounceLabel.leadingAnchor.constraint(equalTo: self.announceTitleLabel.leadingAnchor),
+            self.priceAnnounceLabel.topAnchor.constraint(equalTo: self.announceTitleLabel.bottomAnchor, constant: Self.kPading)
+        ])
+    }
+    
+    private func prepareCategoryAnnounceLabel(){
+        self.addSubview(self.categoryAnnounceLabel)
+        self.categoryAnnounceLabel.textColor = .black
+        self.categoryAnnounceLabel.numberOfLines = 1
+        self.categoryAnnounceLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
+        self.categoryAnnounceLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            self.categoryAnnounceLabel.leadingAnchor.constraint(equalTo: self.announceTitleLabel.leadingAnchor),
+            self.categoryAnnounceLabel.bottomAnchor.constraint(equalTo: self.creationDateAnnounceLabel.topAnchor, constant: -Self.kPading)
+        ])
+    }
+    
+    private func prepareCreationDateAnnounceLabel(){
+        self.addSubview(self.creationDateAnnounceLabel)
+        self.creationDateAnnounceLabel.textColor = .black
+        self.creationDateAnnounceLabel.numberOfLines = 1
+        self.creationDateAnnounceLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
+        self.creationDateAnnounceLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            self.creationDateAnnounceLabel.leadingAnchor.constraint(equalTo: self.announceTitleLabel.leadingAnchor),
+            self.creationDateAnnounceLabel.bottomAnchor.constraint(equalTo: self.annouceImageView.bottomAnchor)
+        ])
     }
     
 }
