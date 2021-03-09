@@ -16,6 +16,7 @@ class AnnounceTableViewCell: UITableViewCell {
 
     static let kPading: CGFloat = 10.0
     static let kAnnouceImageViewSize: CGFloat = 130.0
+    static let kUrgentImageViewSize: CGFloat = 20.0
 
         //MARK: subviews
     
@@ -44,11 +45,16 @@ class AnnounceTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+    }
+    
     //MARK: Setup cell method
     
     func setupCell(){
         self.annouceImageView.image = UIImage(named: "lbc_placeholder")
-        self.announceTitleLabel.text = "Carte graphique"
+        self.announceUrgentImageView.image = UIImage(named: "lbc_urgent_icon")
+        self.announceTitleLabel.text = "Carte graphique pour PC portable Dell inspire N series 2011"
         self.priceAnnounceLabel.text = "100€"
         self.categoryAnnounceLabel.text = "Informatique"
         self.creationDateAnnounceLabel.text = "aujoud'hui 21:30"
@@ -59,16 +65,20 @@ class AnnounceTableViewCell: UITableViewCell {
 
     private func setupUI() {
         self.prepareAnnounceImageView()
+        self.prepareAnnounceUrgentImageView()
         self.prepareAnnounceTitleLabel()
         self.preparePriceAnnounceLabel()
         self.prepareCreationDateAnnounceLabel()
         self.prepareCategoryAnnounceLabel()
+        self.accessoryType = .disclosureIndicator
+
     }
     
     private func prepareAnnounceImageView(){
         self.addSubview(self.annouceImageView)
+        self.annouceImageView.contentMode = .scaleAspectFit
         self.annouceImageView.translatesAutoresizingMaskIntoConstraints = false
-        
+    
         NSLayoutConstraint.activate([
             self.annouceImageView.widthAnchor.constraint(equalToConstant: Self.kAnnouceImageViewSize),
             self.annouceImageView.heightAnchor.constraint(equalToConstant: Self.kAnnouceImageViewSize),
@@ -86,7 +96,7 @@ class AnnounceTableViewCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             self.announceTitleLabel.leadingAnchor.constraint(equalTo:self.annouceImageView.trailingAnchor, constant: Self.kPading),
-            self.announceTitleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Self.kPading),
+            self.announceTitleLabel.trailingAnchor.constraint(equalTo: self.announceUrgentImageView.leadingAnchor, constant: -Self.kPading),
             self.announceTitleLabel.topAnchor.constraint(equalTo: self.annouceImageView.topAnchor)
         ])
     }
@@ -127,6 +137,19 @@ class AnnounceTableViewCell: UITableViewCell {
         NSLayoutConstraint.activate([
             self.creationDateAnnounceLabel.leadingAnchor.constraint(equalTo: self.announceTitleLabel.leadingAnchor),
             self.creationDateAnnounceLabel.bottomAnchor.constraint(equalTo: self.annouceImageView.bottomAnchor)
+        ])
+    }
+    
+    private func prepareAnnounceUrgentImageView(){
+        self.addSubview(self.announceUrgentImageView)
+        self.announceUrgentImageView.contentMode = .scaleAspectFit
+        self.announceUrgentImageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            self.announceUrgentImageView.widthAnchor.constraint(equalToConstant: Self.kUrgentImageViewSize),
+            self.announceUrgentImageView.heightAnchor.constraint(equalToConstant: Self.kUrgentImageViewSize),
+            self.announceUrgentImageView.topAnchor.constraint(equalTo: self.annouceImageView.topAnchor),
+            trailingAnchor.constraint(equalTo: self.announceUrgentImageView.trailingAnchor, constant: Self.kPading)
         ])
     }
     
