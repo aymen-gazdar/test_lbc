@@ -18,6 +18,8 @@
 		E129736425F677E50007AC72 /* AnnouncesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E129736325F677E50007AC72 /* AnnouncesViewModel.swift */; };
 		E129737225F67D3B0007AC72 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E129737125F67D3B0007AC72 /* Extensions.swift */; };
 		E178F2BD25F7B7EA002EC139 /* DetailsAnnounceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E178F2BC25F7B7EA002EC139 /* DetailsAnnounceViewController.swift */; };
+		E178F2D125F9469B002EC139 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E178F2D025F9469B002EC139 /* CategoryTableViewController.swift */; };
+		E178F2D625F95016002EC139 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E178F2D525F95016002EC139 /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		E129736325F677E50007AC72 /* AnnouncesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncesViewModel.swift; sourceTree = "<group>"; };
 		E129737125F67D3B0007AC72 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E178F2BC25F7B7EA002EC139 /* DetailsAnnounceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsAnnounceViewController.swift; sourceTree = "<group>"; };
+		E178F2D025F9469B002EC139 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
+		E178F2D525F95016002EC139 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +118,7 @@
 				E129731425F574F60007AC72 /* LaunchScreen.storyboard */,
 				E129731725F574F60007AC72 /* Info.plist */,
 				E129737125F67D3B0007AC72 /* Extensions.swift */,
+				E178F2D525F95016002EC139 /* Utils.swift */,
 			);
 			path = TestLBC;
 			sourceTree = "<group>";
@@ -157,6 +162,7 @@
 				E129730D25F574F50007AC72 /* AnnouncesListViewController.swift */,
 				E178F2BC25F7B7EA002EC139 /* DetailsAnnounceViewController.swift */,
 				E129735425F672A80007AC72 /* Cell */,
+				E178F2D025F9469B002EC139 /* CategoryTableViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -300,7 +306,9 @@
 			files = (
 				E129730E25F574F50007AC72 /* AnnouncesListViewController.swift in Sources */,
 				E129737225F67D3B0007AC72 /* Extensions.swift in Sources */,
+				E178F2D625F95016002EC139 /* Utils.swift in Sources */,
 				E129730A25F574F50007AC72 /* AppDelegate.swift in Sources */,
+				E178F2D125F9469B002EC139 /* CategoryTableViewController.swift in Sources */,
 				E129735625F672D10007AC72 /* AnnounceTableViewCell.swift in Sources */,
 				E178F2BD25F7B7EA002EC139 /* DetailsAnnounceViewController.swift in Sources */,
 				E129736425F677E50007AC72 /* AnnouncesViewModel.swift in Sources */,
