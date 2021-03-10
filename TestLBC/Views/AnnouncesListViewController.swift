@@ -21,6 +21,8 @@ class AnnouncesListViewController: UITableViewController {
     
     private func setupUI() {
         self.title = NSLocalizedString("Liste d'annonces", comment: "")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: NSLocalizedString("Filtrer", comment: ""), style: .plain, target: self, action: #selector(filterButtonAction))
+        
         let navBarAttributes: [NSAttributedString.Key : Any] = [.foregroundColor: UIColor.orange]
         if #available(iOS 13.0, *) {
             self.navigationController?.navigationBar.standardAppearance.titleTextAttributes = navBarAttributes
@@ -33,7 +35,14 @@ class AnnouncesListViewController: UITableViewController {
         self.tableView.register(AnnounceTableViewCell.self, forCellReuseIdentifier: AnnounceTableViewCell.kAnnounceTableViewCellIdentifier)
         self.tableView.reloadData()
     }
-
+    
+    @objc
+    private func filterButtonAction() {
+        let categoryTableViewController = CategoryTableViewController()
+        let navController = UINavigationController.init(rootViewController: categoryTableViewController)
+        self.present(navController, animated: true, completion: nil)
+    }
+    
 }
 
 //MARK: UITableView delegate/datasource methods
