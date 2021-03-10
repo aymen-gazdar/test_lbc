@@ -19,11 +19,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let splitViewController = UISplitViewController()
         splitViewController.viewControllers = [UINavigationController(rootViewController: AnnouncesListViewController())]
-        splitViewController.preferredDisplayMode = .automatic
+        splitViewController.preferredDisplayMode = .allVisible
         self.window = UIWindow(windowScene: windowScene)
         self.window?.rootViewController = splitViewController
         self.window?.makeKeyAndVisible()
         
+        UINavigationBar.appearance().tintColor = UIColor.orange
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

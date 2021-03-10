@@ -17,6 +17,7 @@
 		E129735625F672D10007AC72 /* AnnounceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E129735525F672D10007AC72 /* AnnounceTableViewCell.swift */; };
 		E129736425F677E50007AC72 /* AnnouncesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E129736325F677E50007AC72 /* AnnouncesViewModel.swift */; };
 		E129737225F67D3B0007AC72 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E129737125F67D3B0007AC72 /* Extensions.swift */; };
+		E178F2BD25F7B7EA002EC139 /* DetailsAnnounceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E178F2BC25F7B7EA002EC139 /* DetailsAnnounceViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		E129735525F672D10007AC72 /* AnnounceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnounceTableViewCell.swift; sourceTree = "<group>"; };
 		E129736325F677E50007AC72 /* AnnouncesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncesViewModel.swift; sourceTree = "<group>"; };
 		E129737125F67D3B0007AC72 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		E178F2BC25F7B7EA002EC139 /* DetailsAnnounceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsAnnounceViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,7 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				E129734925F651C10007AC72 /* Model */,
-				E129734A25F651CA0007AC72 /* View */,
+				E129734A25F651CA0007AC72 /* Views */,
 				E129734825F651B10007AC72 /* ViewModel */,
 				E129730925F574F50007AC72 /* AppDelegate.swift */,
 				E129730B25F574F50007AC72 /* SceneDelegate.swift */,
@@ -149,13 +151,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		E129734A25F651CA0007AC72 /* View */ = {
+		E129734A25F651CA0007AC72 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				E129730D25F574F50007AC72 /* AnnouncesListViewController.swift */,
+				E178F2BC25F7B7EA002EC139 /* DetailsAnnounceViewController.swift */,
 				E129735425F672A80007AC72 /* Cell */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		E129735425F672A80007AC72 /* Cell */ = {
@@ -299,6 +302,7 @@
 				E129737225F67D3B0007AC72 /* Extensions.swift in Sources */,
 				E129730A25F574F50007AC72 /* AppDelegate.swift in Sources */,
 				E129735625F672D10007AC72 /* AnnounceTableViewCell.swift in Sources */,
+				E178F2BD25F7B7EA002EC139 /* DetailsAnnounceViewController.swift in Sources */,
 				E129736425F677E50007AC72 /* AnnouncesViewModel.swift in Sources */,
 				E129730C25F574F50007AC72 /* SceneDelegate.swift in Sources */,
 			);

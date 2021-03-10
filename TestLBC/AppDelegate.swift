@@ -22,9 +22,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let window = self.window {
                 let splitViewController = UISplitViewController()
                 splitViewController.viewControllers = [UINavigationController(rootViewController: AnnouncesListViewController())]
-                splitViewController.preferredDisplayMode = .automatic
+                splitViewController.preferredDisplayMode = .allVisible
                 window.rootViewController = splitViewController
                 window.makeKeyAndVisible()
+                UINavigationBar.appearance().tintColor = UIColor.orange
+
             }
             
         }
