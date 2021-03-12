@@ -38,7 +38,7 @@ class AnnouncesViewModel {
             
         }, failureCompletionBlock: { [weak self] error in
             guard let strongSelf = self else { return }
-
+            strongSelf.error = error
             strongSelf.delegate?.viewModelDidSendEvent(event: .error)
 
         })

@@ -53,7 +53,7 @@ class AnnouncesInteractor {
             guard let strongSelf = self else { return }
 
             strongSelf.associateCategories(categoriesList, with: announcesList) { announcesWithCategories in
-                successCompletionBlock(announcesWithCategories, categoriesList)
+                successCompletionBlock(announcesWithCategories.sorted(), categoriesList)
             }
         }
     }

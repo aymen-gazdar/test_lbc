@@ -64,7 +64,9 @@ extension NetworkDataHandler {
                    success: ((T) -> Void),
                    failure: (Error) -> Void) where T : Decodable {
         do {
-            let decodedData = try JSONDecoder().decode(T.self, from: data)
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .formatted(DateFormatter.lbcDateFormatter)
+            let decodedData = try decoder.decode(T.self, from: data)
             success(decodedData)
             
         } catch {

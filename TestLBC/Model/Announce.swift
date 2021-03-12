@@ -16,7 +16,7 @@ struct Announce: Codable {
     var description: String
     var price: Double?
     var imagesUrl: ImageUrl
-    var creationDate: String
+    var creationDate: Date
     var isUrgent: Bool
     var siret: String?
 
@@ -33,19 +33,19 @@ struct Announce: Codable {
     }
 }
 
-//extension Announce: Comparable {
-//    static func == (lhs: Announce, rhs: Announce) -> Bool {
-//        return lhs.creationDate.date == rhs.creationDate.date
-//    }
-//    
-//    static func < (lhs: Announce, rhs: Announce) -> Bool {
-//        if lhs.isUrgent != rhs.isUrgent {
-//            return lhs.isUrgent
-//        }
-//        return lhs.creationDate.date < rhs.creationDate.date
-//        
-//    }
-//}
+extension Announce: Comparable {
+    static func == (lhs: Announce, rhs: Announce) -> Bool {
+        return lhs.creationDate == rhs.creationDate
+    }
+    
+    static func < (lhs: Announce, rhs: Announce) -> Bool {
+        if lhs.isUrgent != rhs.isUrgent {
+            return lhs.isUrgent
+        }
+        return lhs.creationDate < rhs.creationDate
+        
+    }
+}
 
 struct ImageUrl: Codable {
     var small: String?
