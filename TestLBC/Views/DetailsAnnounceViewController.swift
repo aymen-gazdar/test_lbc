@@ -11,6 +11,12 @@ class DetailsAnnounceViewController: UIViewController {
 
     //MARK: var let
     
+    var announce: Announce? {
+        didSet {
+            self.setupAnnounceInfo()
+        }
+    }
+    
     static let kPading: CGFloat = 15.0
     
     static let kUrgentImageViewSize: CGFloat = 20.0
@@ -48,6 +54,28 @@ class DetailsAnnounceViewController: UIViewController {
 
     //MARK: private methods
 
+    private func setupAnnounceInfo(){
+        guard let announce = self.announce else {
+            return
+        }
+        self.annouceImageView.loadImageAsync(with: announce.imagesUrl.thumb, placeHolder: "lbc_placeholder")
+        self.announceUrgentImageView.isHidden = !announce.isUrgent
+        self.announceTitleLabel.text = announce.title
+        self.announceDescriptionTextLabel.text = announce.description
+        self.priceAnnounceLabel.text = announce.price?.euroFormat
+        self.categoryAnnounceLabel.text = String(announce.categoryId)
+        self.creationDateAnnounceLabel.text = announce.creationDate.stringDate
+        
+        if let siret = announce.siret {
+            self.siretAnnounceLabel.text = "\(NSLocalizedString("SIRET : ", comment: "")) \(siret)"
+            
+        } else {
+            self.siretAnnounceLabel.text = ""
+            
+        }
+
+    }
+    
     private func setupUI() {
         self.view.backgroundColor = .white
         self.prepareScrollView()
@@ -65,8 +93,6 @@ class DetailsAnnounceViewController: UIViewController {
     func prepareScrollView(){
         self.scrollView.translatesAutoresizingMaskIntoConstraints = false
         self.subView.translatesAutoresizingMaskIntoConstraints = false
-        //self.scrollView.backgroundColor = .green
-        //self.subView.backgroundColor = .red
         self.scrollView.addSubview(self.subView)
         self.view.addSubview(self.scrollView)
         
@@ -88,7 +114,6 @@ class DetailsAnnounceViewController: UIViewController {
     
     func prepareAnnouceImageView(){
         self.subView.addSubview(self.annouceImageView)
-        self.annouceImageView.image = UIImage(named: "lbc_placeholder")
         self.annouceImageView.contentMode = .scaleAspectFill
         self.annouceImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -114,7 +139,6 @@ class DetailsAnnounceViewController: UIViewController {
     
     private func prepareAnnounceTitleLabel(){
         self.subView.addSubview(self.announceTitleLabel)
-        self.announceTitleLabel.text = "Carte graphique pour PC portable Dell inspire N series 2011 en bon état mémoire de 2Go chipset"
         self.announceTitleLabel.textColor = .black
         self.announceTitleLabel.numberOfLines = 0
         self.announceTitleLabel.font = UIFont.boldSystemFont(ofSize: 22)
@@ -129,7 +153,6 @@ class DetailsAnnounceViewController: UIViewController {
     
     private func preparePriceAnnounceLabel(){
         self.subView.addSubview(self.priceAnnounceLabel)
-        self.priceAnnounceLabel.text = "100€"
         self.priceAnnounceLabel.textColor = .orange
         self.priceAnnounceLabel.numberOfLines = 1
         self.priceAnnounceLabel.font = UIFont.boldSystemFont(ofSize: 22)
@@ -143,7 +166,6 @@ class DetailsAnnounceViewController: UIViewController {
     
     private func prepareCreationDateAnnounceLabel(){
         self.subView.addSubview(self.creationDateAnnounceLabel)
-        self.creationDateAnnounceLabel.text = "aujourd'hui 21:45"
         self.creationDateAnnounceLabel.textColor = .black
         self.creationDateAnnounceLabel.numberOfLines = 1
         self.creationDateAnnounceLabel.font = UIFont.boldSystemFont(ofSize: 16)
@@ -158,7 +180,6 @@ class DetailsAnnounceViewController: UIViewController {
     
     private func prepareCategoryAnnounceLabel(){
         self.subView.addSubview(self.categoryAnnounceLabel)
-        self.categoryAnnounceLabel.text = "Informatique"
         self.categoryAnnounceLabel.textColor = .darkGray
         self.categoryAnnounceLabel.numberOfLines = 1
         self.categoryAnnounceLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
@@ -186,7 +207,6 @@ class DetailsAnnounceViewController: UIViewController {
     
     private func prepareAnnounceDescriptionTextLabel(){
         self.subView.addSubview(self.announceDescriptionTextLabel)
-        self.announceDescriptionTextLabel.text = "Carte graphique pour PC portable Dell inspire N series 2011 en bon état mémoire de 2Go chipset. Carte graphique pour PC portable Dell inspire N series 2011 en bon état mémoire de 2Go chipset. Carte graphique pour PC portable Dell inspire N series 2011 en bon état mémoire de 2Go chipset"
         self.announceDescriptionTextLabel.textColor = .black
         self.announceDescriptionTextLabel.numberOfLines = 0
         self.announceDescriptionTextLabel.font = UIFont.preferredFont(forTextStyle: .body)
@@ -202,7 +222,6 @@ class DetailsAnnounceViewController: UIViewController {
     
     private func prepareSiretAnnounceLabel(){
         self.subView.addSubview(self.siretAnnounceLabel)
-        self.siretAnnounceLabel.text = NSLocalizedString("Siret", comment: "")
         self.siretAnnounceLabel.textColor = .gray
         self.siretAnnounceLabel.numberOfLines = 1
         self.siretAnnounceLabel.font = UIFont.italicSystemFont(ofSize: 16)

@@ -20,6 +20,15 @@
 		E178F2BD25F7B7EA002EC139 /* DetailsAnnounceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E178F2BC25F7B7EA002EC139 /* DetailsAnnounceViewController.swift */; };
 		E178F2D125F9469B002EC139 /* CategoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E178F2D025F9469B002EC139 /* CategoryTableViewController.swift */; };
 		E178F2D625F95016002EC139 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E178F2D525F95016002EC139 /* Utils.swift */; };
+		E178F2FE25F97CD2002EC139 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = E178F2FD25F97CD2002EC139 /* API.swift */; };
+		E178F30625F97D63002EC139 /* APIType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E178F30525F97D63002EC139 /* APIType.swift */; };
+		E178F30C25F97EB6002EC139 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = E178F30B25F97EB6002EC139 /* Router.swift */; };
+		E178F31525F97FF4002EC139 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E178F31425F97FF4002EC139 /* NetworkManager.swift */; };
+		E178F32225F99805002EC139 /* Announce.swift in Sources */ = {isa = PBXBuildFile; fileRef = E178F32125F99805002EC139 /* Announce.swift */; };
+		E178F32725FA6015002EC139 /* NetworkDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E178F32625FA6015002EC139 /* NetworkDataHandler.swift */; };
+		E178F32F25FAC156002EC139 /* Protocol+Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = E178F32E25FAC156002EC139 /* Protocol+Enum.swift */; };
+		E178F33525FAD96D002EC139 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E178F33425FAD96D002EC139 /* ImageDownloader.swift */; };
+		E178F34025FAE4FD002EC139 /* NetworkErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E178F33F25FAE4FD002EC139 /* NetworkErrors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +68,15 @@
 		E178F2BC25F7B7EA002EC139 /* DetailsAnnounceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsAnnounceViewController.swift; sourceTree = "<group>"; };
 		E178F2D025F9469B002EC139 /* CategoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewController.swift; sourceTree = "<group>"; };
 		E178F2D525F95016002EC139 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		E178F2FD25F97CD2002EC139 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		E178F30525F97D63002EC139 /* APIType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIType.swift; sourceTree = "<group>"; };
+		E178F30B25F97EB6002EC139 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		E178F31425F97FF4002EC139 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		E178F32125F99805002EC139 /* Announce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Announce.swift; sourceTree = "<group>"; };
+		E178F32625FA6015002EC139 /* NetworkDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDataHandler.swift; sourceTree = "<group>"; };
+		E178F32E25FAC156002EC139 /* Protocol+Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Protocol+Enum.swift"; sourceTree = "<group>"; };
+		E178F33425FAD96D002EC139 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
+		E178F33F25FAE4FD002EC139 /* NetworkErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,8 +135,8 @@
 				E129731225F574F60007AC72 /* Assets.xcassets */,
 				E129731425F574F60007AC72 /* LaunchScreen.storyboard */,
 				E129731725F574F60007AC72 /* Info.plist */,
-				E129737125F67D3B0007AC72 /* Extensions.swift */,
-				E178F2D525F95016002EC139 /* Utils.swift */,
+				E178F33325FAD94B002EC139 /* Utils */,
+				E178F2FB25F9695F002EC139 /* NetworkLayer */,
 			);
 			path = TestLBC;
 			sourceTree = "<group>";
@@ -145,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				E129736325F677E50007AC72 /* AnnouncesViewModel.swift */,
+				E178F32E25FAC156002EC139 /* Protocol+Enum.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -152,6 +171,7 @@
 		E129734925F651C10007AC72 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E178F32125F99805002EC139 /* Announce.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -173,6 +193,53 @@
 				E129735525F672D10007AC72 /* AnnounceTableViewCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		E178F2FB25F9695F002EC139 /* NetworkLayer */ = {
+			isa = PBXGroup;
+			children = (
+				E178F31325F97FE0002EC139 /* NetworkManager */,
+				E178F2FC25F97CA3002EC139 /* Components */,
+				E178F30A25F97EA4002EC139 /* NetworkRouter */,
+			);
+			path = NetworkLayer;
+			sourceTree = "<group>";
+		};
+		E178F2FC25F97CA3002EC139 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				E178F2FD25F97CD2002EC139 /* API.swift */,
+				E178F30525F97D63002EC139 /* APIType.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		E178F30A25F97EA4002EC139 /* NetworkRouter */ = {
+			isa = PBXGroup;
+			children = (
+				E178F30B25F97EB6002EC139 /* Router.swift */,
+			);
+			path = NetworkRouter;
+			sourceTree = "<group>";
+		};
+		E178F31325F97FE0002EC139 /* NetworkManager */ = {
+			isa = PBXGroup;
+			children = (
+				E178F31425F97FF4002EC139 /* NetworkManager.swift */,
+				E178F32625FA6015002EC139 /* NetworkDataHandler.swift */,
+				E178F33F25FAE4FD002EC139 /* NetworkErrors.swift */,
+			);
+			path = NetworkManager;
+			sourceTree = "<group>";
+		};
+		E178F33325FAD94B002EC139 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E129737125F67D3B0007AC72 /* Extensions.swift */,
+				E178F2D525F95016002EC139 /* Utils.swift */,
+				E178F33425FAD96D002EC139 /* ImageDownloader.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,15 +371,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E178F32F25FAC156002EC139 /* Protocol+Enum.swift in Sources */,
 				E129730E25F574F50007AC72 /* AnnouncesListViewController.swift in Sources */,
 				E129737225F67D3B0007AC72 /* Extensions.swift in Sources */,
 				E178F2D625F95016002EC139 /* Utils.swift in Sources */,
+				E178F31525F97FF4002EC139 /* NetworkManager.swift in Sources */,
+				E178F32725FA6015002EC139 /* NetworkDataHandler.swift in Sources */,
 				E129730A25F574F50007AC72 /* AppDelegate.swift in Sources */,
+				E178F30C25F97EB6002EC139 /* Router.swift in Sources */,
+				E178F30625F97D63002EC139 /* APIType.swift in Sources */,
+				E178F2FE25F97CD2002EC139 /* API.swift in Sources */,
+				E178F33525FAD96D002EC139 /* ImageDownloader.swift in Sources */,
 				E178F2D125F9469B002EC139 /* CategoryTableViewController.swift in Sources */,
 				E129735625F672D10007AC72 /* AnnounceTableViewCell.swift in Sources */,
 				E178F2BD25F7B7EA002EC139 /* DetailsAnnounceViewController.swift in Sources */,
 				E129736425F677E50007AC72 /* AnnouncesViewModel.swift in Sources */,
+				E178F32225F99805002EC139 /* Announce.swift in Sources */,
 				E129730C25F574F50007AC72 /* SceneDelegate.swift in Sources */,
+				E178F34025FAE4FD002EC139 /* NetworkErrors.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
