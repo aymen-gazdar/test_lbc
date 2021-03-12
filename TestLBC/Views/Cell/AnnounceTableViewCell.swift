@@ -11,6 +11,12 @@ class AnnounceTableViewCell: UITableViewCell {
 
     //MARK: var let
     
+    var announce: Announce? {
+        didSet {
+            self.setupCell()
+        }
+    }
+    
     static let kAnnounceTableViewCellIdentifier = "AnnounceTableViewCellIdentifier"
     static let kAnnounceTableViewCellHeight: CGFloat = 150.0
 
@@ -51,13 +57,16 @@ class AnnounceTableViewCell: UITableViewCell {
     
     //MARK: Setup cell method
     
-    func setupCell(){
-        self.annouceImageView.image = UIImage(named: "lbc_placeholder")
-        self.announceUrgentImageView.image = UIImage(named: "lbc_urgent_icon")
-        self.announceTitleLabel.text = "Carte graphique pour PC portable Dell inspire N series 2011"
-        self.priceAnnounceLabel.text = "100€"
-        self.categoryAnnounceLabel.text = "Informatique"
-        self.creationDateAnnounceLabel.text = "aujoud'hui 21:30"
+    private func setupCell() {
+        guard let announce = self.announce else {
+            return
+        }
+        self.annouceImageView.loadImageAsync(with: announce.imagesUrl.small, placeHolder: "lbc_placeholder")
+        self.announceUrgentImageView.isHidden = !announce.isUrgent
+        self.announceTitleLabel.text = announce.title
+        self.priceAnnounceLabel.text = announce.price?.euroFormat
+        self.categoryAnnounceLabel.text = String(announce.categoryId)
+        self.creationDateAnnounceLabel.text = announce.creationDate.stringDate
 
     }
 
@@ -105,7 +114,7 @@ class AnnounceTableViewCell: UITableViewCell {
         self.addSubview(self.priceAnnounceLabel)
         self.priceAnnounceLabel.textColor = .orange
         self.priceAnnounceLabel.numberOfLines = 1
-        self.priceAnnounceLabel.font = UIFont.preferredFont(forTextStyle: .subheadline)
+        self.priceAnnounceLabel.font = UIFont.boldSystemFont(ofSize: 18)
         self.priceAnnounceLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -141,6 +150,7 @@ class AnnounceTableViewCell: UITableViewCell {
     }
     
     private func prepareAnnounceUrgentImageView(){
+        self.announceUrgentImageView.image = UIImage(named: "lbc_urgent_icon")
         self.addSubview(self.announceUrgentImageView)
         self.announceUrgentImageView.contentMode = .scaleAspectFit
         self.announceUrgentImageView.translatesAutoresizingMaskIntoConstraints = false
