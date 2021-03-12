@@ -11,6 +11,8 @@ class CategoryTableViewController: UITableViewController {
     
     //MARK: - var let
     
+    var categoriesList: [Category] = []
+    
     static let kCategoryCellIdentifier = "CategoryCellIdentifier"
         
     //MARK: - life cycle methods
@@ -54,12 +56,12 @@ class CategoryTableViewController: UITableViewController {
 extension CategoryTableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 8
+        return self.categoriesList.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Self.kCategoryCellIdentifier, for: indexPath)
-        cell.textLabel?.text = "Categorie \(indexPath.row)"
+        cell.textLabel?.text = categoriesList[indexPath.row].name
         return cell
     }
     

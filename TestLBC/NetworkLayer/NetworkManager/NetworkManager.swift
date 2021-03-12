@@ -49,5 +49,35 @@ class NetworkManager {
         }
     }
     
+    func categories(successCompletionBlock: @escaping ([Category]) -> Void,
+                 failureCompletionBlock: @escaping (Error) -> Void) {
+        
+        router.request(.categories) { [weak self] (data, response, error) in
+            guard let strongSelf = self else {
+                failureCompletionBlock(NetworkErrors.unknown)
+                return
+            }
+            
+            if error != nil {
+                failureCompletionBlock(NetworkErrors.unknown)
+            }
+
+            strongSelf.networkDataHandler.handleResponse(response: response, data: data, successCompletionBlock: { data in
+                
+                strongSelf.networkDataHandler.decode(data) { (categories: [Category]) in
+                    successCompletionBlock(categories)
+                    
+                } failure: { _ in
+                    failureCompletionBlock(NetworkErrors.noData)
+                    
+                }
+
+            }, failureCompletionBlock: { error in
+                failureCompletionBlock(error)
+
+            })
+        }
+    }
+    
 }
 
