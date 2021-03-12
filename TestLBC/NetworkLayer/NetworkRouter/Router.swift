@@ -21,9 +21,7 @@ protocol NetworkRouter {
     
 }
 
-class Router<API: APIType>: NSObject,
-                            NetworkRouter,
-                            URLSessionTaskDelegate {
+class Router<API: APIType>: NetworkRouter {
               
     //MARK: var
     
@@ -43,7 +41,7 @@ class Router<API: APIType>: NSObject,
         
         request.httpMethod = route.httpMethod.rawValue
         
-        let session = URLSession(configuration: .default, delegate: self, delegateQueue: nil)
+        let session = URLSession(configuration: .default)
         
         self.task = session.dataTask(with: request, completionHandler: { data, response, error in
             completion(data, response, error)

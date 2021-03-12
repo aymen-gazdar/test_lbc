@@ -9,61 +9,39 @@ import Foundation
 
 class AnnouncesViewModel {
     
+    //MARK: var
+
     weak var delegate: AnnouncesViewModelProtocol?
     
-    //MARK:
+    private var interactor: AnnouncesInteractor = AnnouncesInteractor()
+    
+    private(set) var announcesList: [Announce] = []
+
+    private(set) var categoriesList: [Category] = []
+    
+    private(set) var error: Error = NetworkErrors.unknown
+    
+    //MARK: methods
+    
+    /**
+            loading the announce list from interactor
+     */
     
     func loadAnnouncesList() {
-        var announcesList : [Announce] = []
-        var categoriesList : [Category] = []
+        self.interactor.fetchAnnounces(successCompletionBlock: { [weak self] announcesList, categoriesList  in
+            guard let strongSelf = self else { return }
+            
+            strongSelf.announcesList = announcesList
+            strongSelf.categoriesList = categoriesList
 
-        let dispatchGroup = DispatchGroup()
-        
-        self.delegate?.viewModelDidSendEvent(event: .displayLoader)
-        
-        dispatchGroup.enter()
-        
-        NetworkManager.shared.listing { announces in
-            announcesList = announces
-            dispatchGroup.leave()
+            strongSelf.delegate?.viewModelDidSendEvent(event: .reloadView)
+            
+        }, failureCompletionBlock: { [weak self] error in
+            guard let strongSelf = self else { return }
 
-        } failureCompletionBlock: { error in
-            dispatchGroup.leave()
+            strongSelf.delegate?.viewModelDidSendEvent(event: .error)
 
-        }
-        
-        dispatchGroup.enter()
-
-        NetworkManager.shared.categories { categories in
-            categoriesList = categories
-            dispatchGroup.leave()
-
-        } failureCompletionBlock: { error in
-            dispatchGroup.leave()
-
-        }
-        
-        
-        dispatchGroup.notify(queue: .main) { [weak self] in
-            self?.associateCategories(categoriesList, with: announcesList) { announcesWithCategories in
-                announcesList = announcesWithCategories
-                
-                self?.delegate?.viewModelDidSendEvent(event: .hideLoader)
-                self?.delegate?.viewModelDidSendEvent(event: .reloadView(announces: announcesList, categories: categoriesList))
-            }
-        }
-    }
-    
-    private func associateCategories(_ categories: [Category],
-                                     with announcesList: [Announce],
-                                     completion: @escaping ([Announce]) -> Void) {
-        
-        var announces = announcesList
-        for index in announces.indices {
-            announces[index].category = categories.first(where: {$0.id == announces[index].categoryId})
-        }
-        
-        completion(announces)
+        })
     }
 
 }

@@ -8,8 +8,8 @@
 import Foundation
 
 enum AnnouncesViewModelEvent {
-    case reloadView(announces: [Announce], categories: [Category])
-    case error(_ error: Error)
+    case reloadView
+    case error
     case displayLoader
     case hideLoader
 

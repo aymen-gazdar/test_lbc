@@ -13,11 +13,7 @@ class AnnouncesListViewController: UITableViewController {
 
     let viewModel: AnnouncesViewModel = AnnouncesViewModel()
     
-    let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .gray)
-
-    var announcesList: [Announce] = []
-    
-    var categoriesList: [Category] = []
+    let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .gray)    
 
     //MARK: life cycle methods
     
@@ -26,6 +22,7 @@ class AnnouncesListViewController: UITableViewController {
 
         self.setupUI()
         
+        self.viewModel.delegate = self
         self.viewModel.loadAnnouncesList()
         
     }
@@ -49,14 +46,13 @@ class AnnouncesListViewController: UITableViewController {
             
         }
         
-        self.viewModel.delegate = self
         self.tableView.register(AnnounceTableViewCell.self, forCellReuseIdentifier: AnnounceTableViewCell.kAnnounceTableViewCellIdentifier)
     }
     
     @objc
     private func filterButtonAction() {
         let categoryTableViewController = CategoryTableViewController()
-        categoryTableViewController.categoriesList = self.categoriesList
+        categoryTableViewController.categoriesList = self.viewModel.categoriesList
         let navController = UINavigationController.init(rootViewController: categoryTableViewController)
         self.present(navController, animated: true, completion: nil)
     }
@@ -68,7 +64,7 @@ class AnnouncesListViewController: UITableViewController {
 extension AnnouncesListViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.announcesList.count
+        return self.viewModel.announcesList.count
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -77,7 +73,7 @@ extension AnnouncesListViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let announceCell = tableView.dequeueReusableCell(withIdentifier: AnnounceTableViewCell.kAnnounceTableViewCellIdentifier, for: indexPath) as? AnnounceTableViewCell {
-            announceCell.announce = self.announcesList[indexPath.row]
+            announceCell.announce = self.viewModel.announcesList[indexPath.row]
             return announceCell
         }
         return UITableViewCell()
@@ -85,7 +81,7 @@ extension AnnouncesListViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailsAnnounceViewController = DetailsAnnounceViewController()
-        detailsAnnounceViewController.announce = self.announcesList[indexPath.row]
+        detailsAnnounceViewController.announce = self.viewModel.announcesList[indexPath.row]
         self.splitViewController?.showDetailViewController(detailsAnnounceViewController, sender: self)
         
     }
@@ -94,20 +90,21 @@ extension AnnouncesListViewController {
 extension AnnouncesListViewController: AnnouncesViewModelProtocol {
     func viewModelDidSendEvent(event: AnnouncesViewModelEvent) {
         
-        Utils.runOnMainThread {
+        Utils.runOnMainThread { [weak self] in
+            
+            guard let strongSelf = self else { return}
+            
             switch event {
-            case .reloadView(let announces, let categories):
-                self.announcesList = announces
-                self.categoriesList = categories
-                self.tableView.reloadData()
+            case .reloadView:
+                strongSelf.tableView.reloadData()
 
-            case .error( let error):
-                self.displayAlert(with: NSLocalizedString("Erreur", comment: ""), message: error.localizedDescription)
+            case .error:
+                strongSelf.displayAlert(with: NSLocalizedString("Erreur", comment: ""), message: strongSelf.viewModel.error.localizedDescription)
             case .displayLoader:
-                self.activityIndicator.startAnimating()
+                strongSelf.activityIndicator.startAnimating()
 
             case .hideLoader:
-                self.activityIndicator.stopAnimating()
+                strongSelf.activityIndicator.stopAnimating()
 
             }
         }
