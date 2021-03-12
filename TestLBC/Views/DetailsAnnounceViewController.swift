@@ -63,7 +63,7 @@ class DetailsAnnounceViewController: UIViewController {
         self.announceTitleLabel.text = announce.title
         self.announceDescriptionTextLabel.text = announce.description
         self.priceAnnounceLabel.text = announce.price?.euroFormat
-        self.categoryAnnounceLabel.text = String(announce.categoryId)
+        self.categoryAnnounceLabel.text = announce.category?.name
         self.creationDateAnnounceLabel.text = announce.creationDate.stringDate
         
         if let siret = announce.siret {
