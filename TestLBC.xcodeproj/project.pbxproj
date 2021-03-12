@@ -30,6 +30,7 @@
 		E178F33525FAD96D002EC139 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E178F33425FAD96D002EC139 /* ImageDownloader.swift */; };
 		E178F34025FAE4FD002EC139 /* NetworkErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E178F33F25FAE4FD002EC139 /* NetworkErrors.swift */; };
 		E178F35925FAE9C2002EC139 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E178F35825FAE9C2002EC139 /* Category.swift */; };
+		E178F36725FBFB94002EC139 /* AnnouncesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E178F36625FBFB94002EC139 /* AnnouncesInteractor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		E178F33425FAD96D002EC139 /* ImageDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		E178F33F25FAE4FD002EC139 /* NetworkErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrors.swift; sourceTree = "<group>"; };
 		E178F35825FAE9C2002EC139 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		E178F36625FBFB94002EC139 /* AnnouncesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncesInteractor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 				E129734925F651C10007AC72 /* Model */,
 				E129734A25F651CA0007AC72 /* Views */,
 				E129734825F651B10007AC72 /* ViewModel */,
+				E178F36B25FBFBA0002EC139 /* Interactor */,
 				E129730925F574F50007AC72 /* AppDelegate.swift */,
 				E129730B25F574F50007AC72 /* SceneDelegate.swift */,
 				E129731225F574F60007AC72 /* Assets.xcassets */,
@@ -243,6 +246,14 @@
 				E178F33425FAD96D002EC139 /* ImageDownloader.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		E178F36B25FBFBA0002EC139 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				E178F36625FBFB94002EC139 /* AnnouncesInteractor.swift */,
+			);
+			path = Interactor;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -376,6 +387,7 @@
 			files = (
 				E178F32F25FAC156002EC139 /* Protocol+Enum.swift in Sources */,
 				E129730E25F574F50007AC72 /* AnnouncesListViewController.swift in Sources */,
+				E178F36725FBFB94002EC139 /* AnnouncesInteractor.swift in Sources */,
 				E178F35925FAE9C2002EC139 /* Category.swift in Sources */,
 				E129737225F67D3B0007AC72 /* Extensions.swift in Sources */,
 				E178F2D625F95016002EC139 /* Utils.swift in Sources */,
