@@ -65,7 +65,7 @@ class AnnounceTableViewCell: UITableViewCell {
         self.announceUrgentImageView.isHidden = !announce.isUrgent
         self.announceTitleLabel.text = announce.title
         self.priceAnnounceLabel.text = announce.price?.euroFormat
-        self.categoryAnnounceLabel.text = String(announce.categoryId)
+        self.categoryAnnounceLabel.text = announce.category?.name
         self.creationDateAnnounceLabel.text = announce.creationDate.stringDate
 
     }

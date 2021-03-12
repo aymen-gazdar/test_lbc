@@ -12,12 +12,16 @@ extension String {
     var stringDate: String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .short
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
         return dateFormatter.string(from: dateFormatter.date(from: self) ?? Date())
     }
-   
+    
+    var date: Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        return dateFormatter.date(from: self) ?? Date()
+    }
 }
 
 extension Double {

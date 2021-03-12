@@ -17,6 +17,8 @@ class AnnouncesListViewController: UITableViewController {
 
     var announcesList: [Announce] = []
     
+    var categoriesList: [Category] = []
+
     //MARK: life cycle methods
     
     override func viewDidLoad() {
@@ -54,6 +56,7 @@ class AnnouncesListViewController: UITableViewController {
     @objc
     private func filterButtonAction() {
         let categoryTableViewController = CategoryTableViewController()
+        categoryTableViewController.categoriesList = self.categoriesList
         let navController = UINavigationController.init(rootViewController: categoryTableViewController)
         self.present(navController, animated: true, completion: nil)
     }
@@ -93,8 +96,9 @@ extension AnnouncesListViewController: AnnouncesViewModelProtocol {
         
         Utils.runOnMainThread {
             switch event {
-            case .reloadView(let announces):
+            case .reloadView(let announces, let categories):
                 self.announcesList = announces
+                self.categoriesList = categories
                 self.tableView.reloadData()
 
             case .error( let error):
