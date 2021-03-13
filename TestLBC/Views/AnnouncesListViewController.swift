@@ -52,7 +52,8 @@ class AnnouncesListViewController: UITableViewController {
     @objc
     private func filterButtonAction() {
         let categoryTableViewController = CategoryTableViewController()
-        categoryTableViewController.categoriesList = self.viewModel.categoriesList
+        categoryTableViewController.viewModel = self.viewModel
+        categoryTableViewController.delegate = self
         let navController = UINavigationController.init(rootViewController: categoryTableViewController)
         self.present(navController, animated: true, completion: nil)
     }
@@ -125,6 +126,14 @@ extension AnnouncesListViewController: AnnouncesViewModelProtocol {
             }
         }
         
+    }
+    
+}
+
+extension AnnouncesListViewController: SelectCategoryProtocol {
+    
+    func filterListWithCategoryId(categoryId: Int?) {
+        self.viewModel.filterAnnouncesList(with: categoryId)
     }
     
 }

@@ -33,9 +33,9 @@ class AnnouncesViewModel {
             
             strongSelf.announcesList = announcesList
             strongSelf.categoriesList = categoriesList
-
-            strongSelf.delegate?.viewModelDidSendEvent(event: .reloadView)
             
+            strongSelf.delegate?.viewModelDidSendEvent(event: .reloadView)
+
         }, failureCompletionBlock: { [weak self] error in
             guard let strongSelf = self else { return }
             strongSelf.error = error
@@ -44,4 +44,15 @@ class AnnouncesViewModel {
         })
     }
 
+    func filterAnnouncesList(with categoryId: Int?) {
+        if let categoryId = categoryId {
+            self.announcesList = self.interactor.announcesList.filter({$0.categoryId == categoryId})
+            self.delegate?.viewModelDidSendEvent(event: .reloadView)
+            
+        } else {
+            Utils.log(log: "CategoryId is Null")
+            
+        }
+       
+    }
 }

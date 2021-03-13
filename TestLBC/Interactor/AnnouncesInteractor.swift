@@ -15,6 +15,10 @@ import Foundation
 
 class AnnouncesInteractor {
     
+    var announcesList: [Announce] = []
+
+    var categoriesList: [Category] = []
+
     //MARK: methods
     
     /**
@@ -23,15 +27,13 @@ class AnnouncesInteractor {
     
     func fetchAnnounces(successCompletionBlock: @escaping ([Announce], [Category]) -> Void,
                         failureCompletionBlock: @escaping (Error) -> Void) {
-
-        var announcesList: [Announce] = []
-        var categoriesList: [Category] = []
         
         let dispatchGroup = DispatchGroup()
             
         dispatchGroup.enter()
-        NetworkManager.shared.listing { announces in
-            announcesList = announces
+        NetworkManager.shared.listing { [weak self] announces in
+            guard let strongSelf = self else { return }
+            strongSelf.announcesList = announces
             dispatchGroup.leave()
 
         } failureCompletionBlock: { error in
@@ -40,8 +42,9 @@ class AnnouncesInteractor {
         }
         
         dispatchGroup.enter()
-        NetworkManager.shared.categories { categories in
-            categoriesList = categories
+        NetworkManager.shared.categories { [weak self] categories in
+            guard let strongSelf = self else { return }
+            strongSelf.categoriesList = categories
             dispatchGroup.leave()
 
         } failureCompletionBlock: { error in
@@ -52,8 +55,12 @@ class AnnouncesInteractor {
         dispatchGroup.notify(queue: .main) { [weak self] in
             guard let strongSelf = self else { return }
 
-            strongSelf.associateCategories(categoriesList, with: announcesList) { announcesWithCategories in
-                successCompletionBlock(announcesWithCategories.sorted(), categoriesList)
+            strongSelf.associateCategories(strongSelf.categoriesList, with: strongSelf.announcesList) { [weak self] announcesWithCategories in
+                guard let strongSelf = self else { return }
+                
+                strongSelf.announcesList = announcesWithCategories.sorted()
+                successCompletionBlock(strongSelf.announcesList, strongSelf.categoriesList)
+                
             }
         }
     }

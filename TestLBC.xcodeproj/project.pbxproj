@@ -187,8 +187,8 @@
 			children = (
 				E129730D25F574F50007AC72 /* AnnouncesListViewController.swift */,
 				E178F2BC25F7B7EA002EC139 /* DetailsAnnounceViewController.swift */,
-				E129735425F672A80007AC72 /* Cell */,
 				E178F2D025F9469B002EC139 /* CategoryTableViewController.swift */,
+				E129735425F672A80007AC72 /* Cell */,
 			);
 			path = Views;
 			sourceTree = "<group>";

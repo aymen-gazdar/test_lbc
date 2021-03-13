@@ -7,14 +7,21 @@
 
 import UIKit
 
+protocol SelectCategoryProtocol: AnyObject {
+    func filterListWithCategoryId(categoryId: Int?)
+    
+}
+
 class CategoryTableViewController: UITableViewController {
     
     //MARK: - var let
     
-    var categoriesList: [Category] = []
+    var viewModel: AnnouncesViewModel?
     
     static let kCategoryCellIdentifier = "CategoryCellIdentifier"
-        
+    
+    weak var delegate: SelectCategoryProtocol?
+    
     //MARK: - life cycle methods
     
     override func viewDidLoad() {
@@ -56,18 +63,25 @@ class CategoryTableViewController: UITableViewController {
 extension CategoryTableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.categoriesList.count
+        return self.viewModel?.categoriesList.count ?? 0
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Self.kCategoryCellIdentifier, for: indexPath)
-        cell.textLabel?.text = categoriesList[indexPath.row].name
+        cell.textLabel?.text = self.viewModel?.categoriesList[indexPath.row].name
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        Utils.log(log: "did select row")
-        self.fermerButtonAction()
+        self.dismiss(animated: true) { [weak self] in
+            guard let strongSelf = self else { return }
+            
+            Utils.log(log: "Selected category: \(strongSelf.viewModel?.categoriesList[indexPath.row].name ?? "")")
+            
+            strongSelf.delegate?.filterListWithCategoryId(categoryId: strongSelf.viewModel?.categoriesList[indexPath.row].id)
+            
+        }
+        
     }
     
 }
