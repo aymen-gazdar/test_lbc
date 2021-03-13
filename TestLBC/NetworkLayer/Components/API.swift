@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum API : APIType {
+public enum LbcAPI : APIType {
     
     case listing
     case categories

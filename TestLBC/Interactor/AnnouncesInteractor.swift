@@ -70,7 +70,7 @@ class AnnouncesInteractor {
             assosciate each category to it's annouce
      */
     
-    private func associateCategories(_ categories: [Category],
+    func associateCategories(_ categories: [Category],
                                      with announcesList: [Announce],
                                      completion: @escaping ([Announce]) -> Void) {
         
