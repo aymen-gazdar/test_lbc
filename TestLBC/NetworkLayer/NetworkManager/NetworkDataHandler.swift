@@ -7,12 +7,16 @@
 
 import Foundation
 
-enum Result<Int>{
+enum Result<Error>{
     case success
     case failure(Error)
 }
 
 class NetworkDataHandler {
+    
+    /**
+        handle url Response  data, error
+     */
     
     func handleResponse(response: URLResponse? = nil,
                         data: Data?,
@@ -39,7 +43,11 @@ class NetworkDataHandler {
             
     }
     
-    private func handleNetworkResponse(_ response: HTTPURLResponse) -> Result<Error>{
+    /**
+        Check network error return Result<Error>
+     */
+    
+    func handleNetworkResponse(_ response: HTTPURLResponse) -> Result<Error>{
         switch response.statusCode {
         case 200...299:
             return .success
@@ -59,12 +67,16 @@ class NetworkDataHandler {
     }
 }
 
+//MARK: Decoding response data
+
 extension NetworkDataHandler {
     func decode<T>(_ data: Data,
                    success: ((T) -> Void),
                    failure: (Error) -> Void) where T : Decodable {
         do {
             let decoder = JSONDecoder()
+            
+            //Date fromatter
             decoder.dateDecodingStrategy = .formatted(DateFormatter.lbcDateFormatter)
             let decodedData = try decoder.decode(T.self, from: data)
             success(decodedData)

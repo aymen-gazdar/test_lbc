@@ -15,6 +15,10 @@ enum NetworkErrors: Error {
     case unknown
 }
 
+/**
+    associate error description to errors types
+ */
+
 extension NetworkErrors: LocalizedError {
     public var errorDescription: String? {
         switch self {

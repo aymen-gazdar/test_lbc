@@ -15,19 +15,26 @@ import Foundation
 
 class AnnouncesInteractor {
     
+    //MARK: var let
+
     var announcesList: [Announce]
 
     var categoriesList: [Category] = []
 
-    //MARK: methods
+    private(set) var networkManager: NetworkManager
     
+    //MARK: init
+    
+    init(announces: [Announce] = [], networkManager: NetworkManager = NetworkManager()) {
+        self.announcesList = announces
+        self.networkManager = networkManager
+    }
+    
+    //MARK: methods
+
     /**
             recuperate announces and categories from NetworkLayer
      */
-    
-    init(announces: [Announce] = []) {
-        self.announcesList = announces
-    }
     
     func fetchAnnounces(successCompletionBlock: @escaping ([Announce], [Category]) -> Void,
                         failureCompletionBlock: @escaping (Error) -> Void) {
@@ -35,7 +42,7 @@ class AnnouncesInteractor {
         let dispatchGroup = DispatchGroup()
             
         dispatchGroup.enter()
-        NetworkManager.shared.listing { [weak self] announces in
+        networkManager.listing { [weak self] announces in
             guard let strongSelf = self else { return }
             strongSelf.announcesList = announces
             dispatchGroup.leave()
@@ -46,7 +53,7 @@ class AnnouncesInteractor {
         }
         
         dispatchGroup.enter()
-        NetworkManager.shared.categories { [weak self] categories in
+        networkManager.categories { [weak self] categories in
             guard let strongSelf = self else { return }
             strongSelf.categoriesList = categories
             dispatchGroup.leave()

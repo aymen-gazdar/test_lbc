@@ -10,15 +10,13 @@ import Foundation
 class NetworkManager {
     
     //MARK: let var
-
-    static let shared = NetworkManager()
     
     let networkDataHandler = NetworkDataHandler()
     
     let router = Router<LbcAPI>()
     
-    //MARK: let var
-
+    //MARK: Methods
+    
     func listing(successCompletionBlock: @escaping ([Announce]) -> Void,
                  failureCompletionBlock: @escaping (Error) -> Void) {
         
