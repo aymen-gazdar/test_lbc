@@ -43,7 +43,7 @@ class LBCImageDownloaderTest: XCTestCase {
         //The downloaded image and the image in cache must be the same one
         XCTAssertEqual(imageFromCache, downloadedImage, "The downloaded image must be the same image loaded from the cache")
         
-        //ImageView must display a placeHolder
+        //ImageView must display the downloadedImage
         XCTAssertEqual(validImageView.image, downloadedImage, "The imageView must be displaying the loaded image")
         
         

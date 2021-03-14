@@ -63,8 +63,6 @@ class LBCModelsTest: XCTestCase {
     let networkDataHandler = NetworkDataHandler()
 
     func testAnnounceModelParse() throws {
-        let requester = Requester<LbcAPI>()
-        let networkDataHandler = NetworkDataHandler()
         
         var mockedData: Data?
 
@@ -119,13 +117,15 @@ class LBCModelsTest: XCTestCase {
         XCTAssertNotNil(unwrappedMockedAnnounces.last?.creationDate, "Last Announce's date must not be Nil")
         
         // Test date string Format
+
+        XCTAssertEqual(unwrappedMockedAnnounces.first?.creationDate.stringDate, "05 Nov 2019 à 16:56 " , "First announce's date must be '05 Nov 2019 à 16:56'")
+        XCTAssertEqual(unwrappedMockedAnnounces.last?.creationDate.stringDate, "05 Nov 2019 à 16:56 " , "Last Announce's date must be '05 Nov 2019 à 16:56'")
+
+        // Test currency formatter
         
-        let unwrappedFirstAnnouncesDate = try XCTUnwrap(unwrappedMockedAnnounces.first?.creationDate.stringDate, "unwrapping first mocked announce's date")
-        let unwrappedLastLastDate = try XCTUnwrap(unwrappedMockedAnnounces.last?.creationDate.stringDate, "unwrapping last mocked  announce's date")
-
-        XCTAssertEqual(unwrappedFirstAnnouncesDate, "05 Nov 2019 à 16:56 " , "First announce's date must be '05 Nov 2019 à 16:56'")
-        XCTAssertEqual(unwrappedLastLastDate, "05 Nov 2019 à 16:56 " , "Last Announce's date must be '05 Nov 2019 à 16:56'")
-
+        XCTAssertEqual(unwrappedMockedAnnounces.first?.price?.euroFormat, "140,00 €" , "First announce's date must be '140,00 €'")
+        XCTAssertEqual(unwrappedMockedAnnounces.last?.price?.euroFormat, "5,00 €" , "Last Announce's date must be '5,00 €'")
+        
     }
     
     func testCategoryModelParse() throws {
@@ -172,4 +172,12 @@ class LBCModelsTest: XCTestCase {
         
     }
     
+    func testLbcApiUrl() throws {
+        let listingUrl = URL(string: "https://raw.githubusercontent.com/leboncoin/paperclip/master/listing.json")
+        let categoriesUrl = URL(string: "https://raw.githubusercontent.com/leboncoin/paperclip/master/categories.json")
+        
+        XCTAssertEqual(LbcAPI.categories.apiUrl, categoriesUrl, "Category API Url is wrong")
+        XCTAssertEqual(LbcAPI.listing.apiUrl, listingUrl, "Listing API Url is wrong")
+
+    }
 }
