@@ -15,7 +15,7 @@ import Foundation
 
 class AnnouncesInteractor {
     
-    var announcesList: [Announce] = []
+    var announcesList: [Announce]
 
     var categoriesList: [Category] = []
 
@@ -24,6 +24,10 @@ class AnnouncesInteractor {
     /**
             recuperate announces and categories from NetworkLayer
      */
+    
+    init(announces: [Announce] = []) {
+        self.announcesList = announces
+    }
     
     func fetchAnnounces(successCompletionBlock: @escaping ([Announce], [Category]) -> Void,
                         failureCompletionBlock: @escaping (Error) -> Void) {
@@ -70,7 +74,7 @@ class AnnouncesInteractor {
             assosciate each category to it's annouce
      */
     
-    private func associateCategories(_ categories: [Category],
+    func associateCategories(_ categories: [Category],
                                      with announcesList: [Announce],
                                      completion: @escaping ([Announce]) -> Void) {
         

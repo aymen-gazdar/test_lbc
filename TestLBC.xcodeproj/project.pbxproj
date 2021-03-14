@@ -31,6 +31,11 @@
 		E178F34025FAE4FD002EC139 /* NetworkErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = E178F33F25FAE4FD002EC139 /* NetworkErrors.swift */; };
 		E178F35925FAE9C2002EC139 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E178F35825FAE9C2002EC139 /* Category.swift */; };
 		E178F36725FBFB94002EC139 /* AnnouncesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E178F36625FBFB94002EC139 /* AnnouncesInteractor.swift */; };
+		E178F38825FD06E1002EC139 /* LBCModelsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E178F38725FD06E1002EC139 /* LBCModelsTest.swift */; };
+		E178F39125FD093D002EC139 /* Listing.json in Resources */ = {isa = PBXBuildFile; fileRef = E178F39025FD093C002EC139 /* Listing.json */; };
+		E178F39925FD1007002EC139 /* Categories.json in Resources */ = {isa = PBXBuildFile; fileRef = E178F39825FD1007002EC139 /* Categories.json */; };
+		E19E0A8F25FD379F006F23F8 /* LBCDataManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19E0A8E25FD379F006F23F8 /* LBCDataManagerTest.swift */; };
+		E1A16B6025FD749900FDC00C /* LBCImageDownloaderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1A16B5F25FD749900FDC00C /* LBCImageDownloaderTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +86,11 @@
 		E178F33F25FAE4FD002EC139 /* NetworkErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrors.swift; sourceTree = "<group>"; };
 		E178F35825FAE9C2002EC139 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		E178F36625FBFB94002EC139 /* AnnouncesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnnouncesInteractor.swift; sourceTree = "<group>"; };
+		E178F38725FD06E1002EC139 /* LBCModelsTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBCModelsTest.swift; sourceTree = "<group>"; };
+		E178F39025FD093C002EC139 /* Listing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Listing.json; path = ../../../Documents/Listing.json; sourceTree = "<group>"; };
+		E178F39825FD1007002EC139 /* Categories.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = Categories.json; path = ../../../Documents/Categories.json; sourceTree = "<group>"; };
+		E19E0A8E25FD379F006F23F8 /* LBCDataManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBCDataManagerTest.swift; sourceTree = "<group>"; };
+		E1A16B5F25FD749900FDC00C /* LBCImageDownloaderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LBCImageDownloaderTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,7 +159,11 @@
 		E129731F25F574F60007AC72 /* TestLBCTests */ = {
 			isa = PBXGroup;
 			children = (
+				E178F38F25FD075C002EC139 /* JsonMock */,
 				E129732025F574F60007AC72 /* TestLBCTests.swift */,
+				E178F38725FD06E1002EC139 /* LBCModelsTest.swift */,
+				E19E0A8E25FD379F006F23F8 /* LBCDataManagerTest.swift */,
+				E1A16B5F25FD749900FDC00C /* LBCImageDownloaderTest.swift */,
 				E129732225F574F60007AC72 /* Info.plist */,
 			);
 			path = TestLBCTests;
@@ -254,6 +268,15 @@
 				E178F36625FBFB94002EC139 /* AnnouncesInteractor.swift */,
 			);
 			path = Interactor;
+			sourceTree = "<group>";
+		};
+		E178F38F25FD075C002EC139 /* JsonMock */ = {
+			isa = PBXGroup;
+			children = (
+				E178F39025FD093C002EC139 /* Listing.json */,
+				E178F39825FD1007002EC139 /* Categories.json */,
+			);
+			path = JsonMock;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -368,6 +391,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E178F39125FD093D002EC139 /* Listing.json in Resources */,
+				E178F39925FD1007002EC139 /* Categories.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,6 +438,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E129732125F574F60007AC72 /* TestLBCTests.swift in Sources */,
+				E178F38825FD06E1002EC139 /* LBCModelsTest.swift in Sources */,
+				E19E0A8F25FD379F006F23F8 /* LBCDataManagerTest.swift in Sources */,
+				E1A16B6025FD749900FDC00C /* LBCImageDownloaderTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

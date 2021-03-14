@@ -15,7 +15,7 @@ class NetworkManager {
     
     let networkDataHandler = NetworkDataHandler()
     
-    let router = Router<API>()
+    let router = Router<LbcAPI>()
     
     //MARK: let var
 

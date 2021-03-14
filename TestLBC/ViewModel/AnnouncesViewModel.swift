@@ -13,7 +13,7 @@ class AnnouncesViewModel {
 
     weak var delegate: AnnouncesViewModelProtocol?
     
-    private var interactor: AnnouncesInteractor = AnnouncesInteractor()
+    private var interactor: AnnouncesInteractor
     
     private(set) var announcesList: [Announce] = []
 
@@ -26,6 +26,10 @@ class AnnouncesViewModel {
     /**
             loading the announce list from interactor
      */
+    
+    init(interactor: AnnouncesInteractor = AnnouncesInteractor()) {
+        self.interactor = interactor
+    }
     
     func loadAnnouncesList() {
         self.interactor.fetchAnnounces(successCompletionBlock: { [weak self] announcesList, categoriesList  in
