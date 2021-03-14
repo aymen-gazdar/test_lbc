@@ -83,7 +83,7 @@ class LBCModelsTest: XCTestCase {
         
         // decoding mocked data
         
-        var mockedAnnounces: [Announce]?
+        var mockedAnnounces: [Announce] = []
 
         let expectationDecode = self.expectation(description: "Testing decode mocked Announces")
         networkDataHandler.decode(unwrappedMockedData) { (annonces: [Announce]) in
@@ -97,34 +97,32 @@ class LBCModelsTest: XCTestCase {
         
         // Wait for the expectation to be fullfilled, or time out
         waitForExpectations(timeout: 3, handler: nil)
+              
+        XCTAssertEqual(mockedAnnounces.count, 4, "MockedAnnounces array must contains 4 objects" )
         
-        let unwrappedMockedAnnounces = try XCTUnwrap(mockedAnnounces, "unwrapping mocked announces")
-      
-        XCTAssertEqual(unwrappedMockedAnnounces.count, 4, "MockedAnnounces array must contains 4 objects" )
-        
-        XCTAssertEqual(unwrappedMockedAnnounces.first?.id, 1461267313 , "First Announce ID must be equal to 1461267313")
-        XCTAssertEqual(unwrappedMockedAnnounces.last?.id, 1077103477 , "Last Announce ID must be equal to 1077103477")
+        XCTAssertEqual(mockedAnnounces.first?.id, 1461267313 , "First Announce ID must be equal to 1461267313")
+        XCTAssertEqual(mockedAnnounces.last?.id, 1077103477 , "Last Announce ID must be equal to 1077103477")
 
         
-        XCTAssertEqual(unwrappedMockedAnnounces.first?.categoryId, 4 , "First Announce's categoryID must be equal to 4")
-        XCTAssertEqual(unwrappedMockedAnnounces.last?.categoryId, 2 , "Last Announce's categoryID must be equal to 2")
+        XCTAssertEqual(mockedAnnounces.first?.categoryId, 4 , "First Announce's categoryID must be equal to 4")
+        XCTAssertEqual(mockedAnnounces.last?.categoryId, 2 , "Last Announce's categoryID must be equal to 2")
 
-        XCTAssertEqual(unwrappedMockedAnnounces.first?.title, "Statue homme noir assis en plâtre polychrome" , "Announce's title must be 'Statue homme noir assis en plâtre polychrome'")
-        XCTAssertEqual(unwrappedMockedAnnounces.last?.title, "Ensemble fille 1 mois NEUF" , "Second Announce's title must be 'Ensemble fille 1 mois NEUF'")
+        XCTAssertEqual(mockedAnnounces.first?.title, "Statue homme noir assis en plâtre polychrome" , "Announce's title must be 'Statue homme noir assis en plâtre polychrome'")
+        XCTAssertEqual(mockedAnnounces.last?.title, "Ensemble fille 1 mois NEUF" , "Second Announce's title must be 'Ensemble fille 1 mois NEUF'")
 
         
-        XCTAssertNotNil(unwrappedMockedAnnounces.first?.creationDate, "First Announce's date must not be Nil")
-        XCTAssertNotNil(unwrappedMockedAnnounces.last?.creationDate, "Last Announce's date must not be Nil")
+        XCTAssertNotNil(mockedAnnounces.first?.creationDate, "First Announce's date must not be Nil")
+        XCTAssertNotNil(mockedAnnounces.last?.creationDate, "Last Announce's date must not be Nil")
         
         // Test date string Format
 
-        XCTAssertEqual(unwrappedMockedAnnounces.first?.creationDate.stringDate, "05 Nov 2019 à 16:56 " , "First announce's date must be '05 Nov 2019 à 16:56'")
-        XCTAssertEqual(unwrappedMockedAnnounces.last?.creationDate.stringDate, "05 Nov 2019 à 16:56 " , "Last Announce's date must be '05 Nov 2019 à 16:56'")
+        XCTAssertEqual(mockedAnnounces.first?.creationDate.stringDate, "05 Nov 2019 à 16:56 " , "First announce's date must be '05 Nov 2019 à 16:56'")
+        XCTAssertEqual(mockedAnnounces.last?.creationDate.stringDate, "05 Nov 2019 à 16:56 " , "Last Announce's date must be '05 Nov 2019 à 16:56'")
 
         // Test currency formatter
         
-        XCTAssertEqual(unwrappedMockedAnnounces.first?.price?.euroFormat, "140,00 €" , "First announce's date must be '140,00 €'")
-        XCTAssertEqual(unwrappedMockedAnnounces.last?.price?.euroFormat, "5,00 €" , "Last Announce's date must be '5,00 €'")
+        XCTAssertEqual(mockedAnnounces.first?.price?.euroFormat, "140,00 €" , "First announce's date must be '140,00 €'")
+        XCTAssertEqual(mockedAnnounces.last?.price?.euroFormat, "5,00 €" , "Last Announce's date must be '5,00 €'")
         
     }
     
