@@ -15,8 +15,11 @@ import UIKit
 
 extension UIImageView {
 
-    func loadImageAsync(with urlString: String?, placeHolder: String) {
-        guard let urlString = urlString else { return }
+    func loadImageAsync(with urlString: String?, placeHolder: String, handler: @escaping (UIImage?) -> Void = { _ in }) {
+        guard let urlString = urlString else {
+            handler(nil)
+            return
+        }
 
         /**
             reinit image and set placeholder
@@ -31,6 +34,7 @@ extension UIImageView {
 
         if let cachedImage = ImageCache.shared.image(forKey: urlString) {
             self.image = cachedImage
+            handler(nil)
             return
         }
 
@@ -47,6 +51,7 @@ extension UIImageView {
         
         
         guard let url = URL(string: urlString) else {
+            handler(nil)
             return
         }
         
@@ -64,6 +69,7 @@ extension UIImageView {
 
             guard let data = data,
                   let downloadedImage = UIImage(data: data) else {
+                handler(nil)
                 return
             }
 
@@ -75,6 +81,8 @@ extension UIImageView {
                 self?.image = downloadedImage
             }
             
+            handler(downloadedImage)
+
         }
 
         task.resume()
