@@ -91,6 +91,10 @@ class LBCModelsTest: XCTestCase {
             expectationDecode.fulfill()
 
         } failure: { (error) in
+            
+            //TODO: sometimes the Decoding fail, it's not systematic
+                // in general only the fist unitTest's run fail
+            
             XCTFail("Decoding announces data must succeed. But got error: \(error)")
             expectationDecode.fulfill()
         }
